@@ -1,21 +1,21 @@
-function incrementArray(xs) {
-    let ys = [];
+function incrementArray(xs: number[]): number[] {
+    let ys: number[] = [];
     for (let i = 0; i < xs.length; i++) {
         ys[i] = xs[i] + 1;
     }
     return ys;
 }
 
-function doubleArray(xs) {
-    let ys = [];
+function doubleArray(xs: number[]): number[] {
+    let ys: number[] = [];
     for (let i = 0; i < xs.length; i++) {
         ys[i] = xs[i] * 2;
     }
     return ys;
 }
 
-function isPairArray(xs) {
-    let ys = [];
+function isPairArray(xs: number[]): boolean[] {
+    let ys: boolean[] = [];
     for (let i = 0; i < xs.length; i++) {
         ys[i] = xs[i] % 2 == 0;
     }
@@ -23,28 +23,28 @@ function isPairArray(xs) {
 }
 
 
-function map(f, xs) {
-    let ys = [];
+function map<X,Y>(f: (x: X) => Y, xs: X[]): Y[] {
+    let ys: Y[] = [];
     for (let i = 0; i < xs.length; i++) {
         ys[i] = f(xs[i]);
     }
     return ys;
 }
 
-function increment(x) {
+function increment(x: number): number {
     return x + 1;
 }
 
-function double(x) {
+function double(x: number): number {
     return x * 2;
 }
 
-function isPair(x) {
+function isPair(x: number): boolean {
     return x % 2 == 0;
 }
 
 
-function initial(string) {
+function initial(string: string): string {
     return string[0].toUpperCase();
 }
 
