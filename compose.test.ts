@@ -2,13 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { compose } from './compose';
 import { map } from './map';
 import { filter } from './filter';
+import { curry } from './curry';
 
 const isEven = (x: number) => x % 2 === 0;
 const inc = (x: number) => x + 1;
 const double = (x: number) => x * 2;
 
-const curryMap = (xs: number[]) => map(inc, xs); 
-const curryFilter = (xs: number[]) => filter(isEven, xs);
+const curryMap = curry(map); 
+const curryFilter = curry(filter);
 
 describe('compose()', function() {
     it('compose de múltiples funciones', function() {
@@ -24,12 +25,29 @@ describe('compose()', function() {
         const xs = [1, 2, 5, 8, 3];
 
         const f = compose(
-                curryFilter,
-                curryMap
-               )
-;
+                curryFilter(isEven),
+                curryMap(inc)
+               );
         expect(f(xs)).toEqual([2, 6, 4]);
     });
+
+    it('compose map con map', function() {
+        const xs = [1, 2, 5, 8, 3];
+        const f = compose(
+                curryMap(double),
+                curryMap(inc)
+               );
+        expect(f(xs)).toEqual([4, 6, 12, 18, 8]);
+    });
+
+    it('compose map con map', function() {
+        const xs = [1, 2, 5, 8, 3];
+        const f = compose(double, inc);
+        expect(map(f, xs)).toEqual([4, 6, 12, 18, 8]);
+    });
+
+
+    // añadir un test que use composición de map, filter y reduce
 });
 
 
