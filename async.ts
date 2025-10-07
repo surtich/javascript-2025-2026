@@ -27,6 +27,7 @@ export function asyncCompose<X, Y, Z>(f: (y: Y, cb: (z: Z) => void) => void, g: 
 }
 
 
+/*
 
 asyncAdd(3, 4, function(result) {
     asyncProduct(result, 8, function(result) {
@@ -60,3 +61,4 @@ function asyncMap<X, Y>(f: (x: X, cb: (y: Y) => void) => void, cb: (ys: Y[]) => 
 asyncMap(asyncInc, console.log, [1,5,8, 2, -1, 10, 11])
 
 //ejercicio: implementar asyncFilter y asyncReduce
+*/

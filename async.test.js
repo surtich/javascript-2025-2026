@@ -1,11 +1,10 @@
-import { asyncAdd, asyncProduct } from './async';
 import { describe, it, expect } from 'vitest';
+import { asyncAdd, asyncProduct } from './async';
 
 describe('asyncAdd', () => {
     it('should add two numbers asynchronously', (done) => {
-        asyncAdd(2, 3, (result) => {
-            console.log('Result of asyncAdd:', result);
-            expect(result).toBe(8);
+        asyncAdd(2, 3, function (result) {
+            expect(result).toBe(6);
             done();
         });
     });
