@@ -24,6 +24,12 @@ addColorBtn.addEventListener("click", function(event) {
   event.preventDefault();
 });
 
+
+colorInput.addEventListener("input", function(event) {
+  const color = colorInput.value;
+  addColorBtn.disabled = !isValidColor(color);
+});
+
 function addColor(color) {
   if (!isValidColor(color)) {
     alert("Color no válido");
