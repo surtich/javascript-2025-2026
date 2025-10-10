@@ -23,7 +23,20 @@ addColorBtn.addEventListener("click", function(event) {
   }
 });
 
+colorInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    const color = colorInput.value;
+    if (color) {
+      addColor(color);
+    }
+  }
+});
+
 function addColor(color) {
+  if (!isValidColor(color)) {
+    alert("Color no válido");
+    return;
+  }
   const div = document.createElement("div");
   div.classList.add("color");
   div.style.backgroundColor = color;
@@ -39,6 +52,10 @@ function addClickColorListener(div) {
     div.classList.add("color-selected");
     colorSelected = div;
   });
+}
+
+function isValidColor(strColor) {
+  return CSS.supports("color", strColor);
 }
 
 
