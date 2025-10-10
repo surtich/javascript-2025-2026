@@ -18,9 +18,8 @@ changeColorBtn.addEventListener("click", function(event) {
 
 addColorBtn.addEventListener("click", function(event) {
   const color = colorInput.value;
-  if (isValidColor(color)) {
+  if (color) {
     addColor(color);
-    colorInput.value = "";
   }
 });
 
@@ -41,11 +40,6 @@ function addClickColorListener(div) {
     colorSelected = div;
   });
 }
-
-function isValidColor(color) {
-    return CSS.supports('color', color);
-}
-
 
 
 /* ejercicios
