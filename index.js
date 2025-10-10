@@ -18,7 +18,7 @@ changeColorBtn.addEventListener("click", function(event) {
 
 addColorBtn.addEventListener("click", function(event) {
   const color = colorInput.value;
-  if (color) {
+  if (isValidColor(color)) {
     addColor(color);
     colorInput.value = "";
   }
@@ -42,14 +42,19 @@ function addClickColorListener(div) {
   });
 }
 
+function isValidColor(color) {
+    return CSS.supports('color', color);
+}
+
 
 
 /* ejercicios
 
-1.- Comprobar que el colro de la caja de texto sea válido
+1.- Comprobar que el color de la caja de texto sea válido
 2.- Deactivar o activar los botones según sea necesario
 3.- Crear el botón borrar color. Que borre el color seleccionado
 4.- Cuando se borre un color, si ese es el color seleccionado, se debe seleccionar el siguiente.
 5.- Cuando se borre un color, si ese es el color es el de fondo, se debe poner el fondo en blanco.
 6.- Cuando se pulse intro en la caja de texto, se debe añadir el color.
 7.- Usar radio buttons en lugar de divs. Los radiobuttons deben tener la misma apariencia que los divs.
+*/
