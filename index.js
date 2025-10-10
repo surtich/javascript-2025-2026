@@ -4,10 +4,9 @@ const removeColorBtn = document.getElementById("removeColor");
 const colorInput = document.getElementById("colorInput");
 
 const colorContainer = document.querySelector(".color-container");
-const colors = colorContainer.querySelectorAll("div.color");
 let colorSelected = document.querySelector(".color-selected");
 
-for (let color of colors) {
+for (let color of colorContainer.children) {
   addClickColorListener(color);
 }
 
@@ -53,16 +52,29 @@ function addClickColorListener(div) {
   });
 }
 
+function selectNextColor() {
+  if (!colorSelected) return;
+
+  let nextColor = colorSelected.nextElementSibling;
+  if (!nextColor) {
+    nextColor = colorContainer.firstElementChild;
+  }
+
+  nextColor.classList.add("color-selected");
+  colorContainer.removeChild(colorSelected);
+  if (colorContainer.children.length > 0) {
+    colorSelected = nextColor;
+  } else {
+    colorSelected = null;
+  }
+}
 
 removeColorBtn.addEventListener("click", function(event){
-   if (!colorSelected) {
+  if (!colorSelected) {
     return;
-   };
-
-    //const colorValue=window.getComputedStyle(colorToRemove).backgroundColor;
-    //const bodyColor = window.getComputedStyle(document.body).backgroundColor;
- 
-    colorContainer.removeChild(colorSelected);
+  };  
+  document.body.style.backgroundColor = "white";  
+  selectNextColor();
 });
 
 function isValidColor(strColor) {
@@ -73,8 +85,5 @@ function isValidColor(strColor) {
 /* ejercicios
 
 2.- Deactivar o activar los botones según sea necesario
-3.- Crear el botón borrar color. Que borre el color seleccionado
-4.- Cuando se borre un color, si ese es el color seleccionado, se debe seleccionar el siguiente.
-5.- Cuando se borre un color, si ese es el color es el de fondo, se debe poner el fondo en blanco.
 7.- Usar radio buttons en lugar de divs. Los radiobuttons deben tener la misma apariencia que los divs.
 */
