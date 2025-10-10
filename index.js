@@ -21,15 +21,7 @@ addColorBtn.addEventListener("click", function(event) {
   if (color) {
     addColor(color);
   }
-});
-
-colorInput.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    const color = colorInput.value;
-    if (color) {
-      addColor(color);
-    }
-  }
+  event.preventDefault();
 });
 
 function addColor(color) {
