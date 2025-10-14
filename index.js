@@ -49,6 +49,7 @@ function addClickColorListener(div) {
     }
     div.classList.add("color-selected");
     colorSelected = div;
+    render();
   });
 }
 
@@ -67,6 +68,7 @@ function selectNextColor() {
   } else {
     colorSelected = null;
   }
+  render();
 }
 
 removeColorBtn.addEventListener("click", function(event){
@@ -79,6 +81,12 @@ removeColorBtn.addEventListener("click", function(event){
 
 function isValidColor(strColor) {
   return CSS.supports("color", strColor);
+}
+
+
+function render() {
+  removeColorBtn.disabled = !colorSelected;
+  changeColorBtn.disabled = !colorSelected || document.body.style.backgroundColor === getComputedStyle(colorSelected).backgroundColor ;
 }
 
 
