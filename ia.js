@@ -1,35 +1,24 @@
 const promptInput = document.getElementById("promptInput");
-const apiKeyInput = document.getElementById("apikeyInput");
 const sendPromptButton = document.getElementById("sendPrompt");
 const responseParagraph = document.getElementById("response");
 
 
 async function sendPrompt(prompt) {
     try {
-        const apiKey = apiKeyInput.value; // Obtén la API key del input
-
-        const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent', {
+        
+        const response = await fetch('http://localhost:3000', {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': apiKey
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            contents: [
-            {
-                parts: [
-                {
-                    text: prompt
-                }
-                ]
-            }
-            ]
+            prompt
         })
         });
 
         const data = await response.json();
         console.log(data);
-        return data?.candidates[0]?.content?.parts[0]?.text;
+        return data;
     } catch (error) {
         console.error('Error:', error);
     }
